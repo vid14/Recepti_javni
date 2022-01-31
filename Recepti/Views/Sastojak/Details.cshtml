@@ -1,0 +1,55 @@
+﻿@model Recepti.Models.ViewModel.SastojakVm
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4>Detalji sastojka</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImeSastojka)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImeSastojka) - @Html.DisplayFor(model=>model.JedinicaSastojka)
+        </dd>
+    </dl>
+</div>
+<div>
+    <h4>Recepti u kojima se koristi</h4>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ListaRecepata[0].ImeRecepta)
+            </th>
+            <th>
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.ListaRecepata) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImeRecepta)
+                </td>
+                <td>
+                    <a asp-action="DetaljiRecepta" asp-controller="Home" asp-route-receptId="@item.ReceptId" class="btn btn-primary btn-sm">Detalji</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <form method="get">
+        <div page-model="@ViewBag.PaginacijaInfo" page-action="Index" page-classes-enabled="true"
+             page-class="page-link" page-class-normal="page-link" page-class-selected="page-link active"
+             class="pagination justify-content-end pr-4 pt-2 pb-4">
+        </div>
+    </form>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SastojakId" class="btn btn-primary">Uredi</a> |
+    <a asp-action="Index" class="btn btn-primary">Nazad</a>
+</div>

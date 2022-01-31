@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Recepti.Models.ReceptiBaza.KategorijaRecepta>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Kategorije</h1>
+
+<p>Lista svih kategorija u kojima moze biti neki recepte. Kategorije sluze laksem pretrazivanju recepata.</p>
+
+<p>
+    <a asp-action="Create" class="btn btn-success btn-sm">Create New</a>
+</p>
+<div class="text-danger">
+    @ViewBag.Greska
+    @TempData["Greska"]
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Index">
+            <div class="input-group">
+                <input type="text" name="kategorija" /> 
+                <div class="input-group-append" style="margin-left:5px">
+                    <input type="submit" value="Pretraga" class="btn btn-secondary btn-sm"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br/>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.KategorijaIme)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KategorijaIme)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.KategorijaId" class="btn btn-primary btn-sm">Uredi</a> |
+                <a asp-action="Details" asp-route-id="@item.KategorijaId" class="btn btn-primary btn-sm">Detalji</a> |
+                <a asp-action="Delete" asp-route-id="@item.KategorijaId" class="btn btn-danger btn-sm">Obrisi</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<form method="get">
+    <div page-model="@ViewBag.PaginacijaInfo" page-action="Index" page-classes-enabled="true"
+         page-class="page-link" page-class-normal="page-link" page-class-selected="page-link active"
+         class="pagination justify-content-end pr-4 pt-2 pb-4">
+    </div>
+</form>

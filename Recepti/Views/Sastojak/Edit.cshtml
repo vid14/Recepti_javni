@@ -1,0 +1,43 @@
+﻿@model Recepti.Models.ReceptiBaza.Sastojak
+
+@{
+    ViewData["Title"] = "Uredi";
+}
+
+<h1>Uredi sastojak</h1>
+
+<h4>Sastojak recepta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SastojakId" />
+            <div class="form-group">
+                <label asp-for="Ime" class="control-label"></label>
+                <input asp-for="Ime" class="form-control" />
+                <span asp-validation-for="Ime" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="MjernaJedinicaId" class="control-label"></label>
+                <select asp-for="MjernaJedinicaId" asp-items="ViewBag.MjerneJedinice" class="form-select">
+                    <option disabled selected>--Odaberi jedinicu--</option>
+                </select>
+                <span asp-validation-for="MjernaJedinicaId" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Nazad</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

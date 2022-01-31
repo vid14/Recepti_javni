@@ -1,0 +1,75 @@
+﻿@model List<Recepti.Models.ViewModel.ListaRecepataVm>
+
+@{
+    ViewData["Title"] = "Recepti pocetna";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Recepti</h1>
+</div>
+
+<p>
+    <a asp-action="NoviRecept" class="btn btn-primary">Novi recept</a>
+</p>
+
+<p class="text-danger">
+    @TempData["Poruka"]
+</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>Nije potrebno popuniti sva polja za pretragu <br/>
+            Za više kategorija ili sastojaka potrebno je na kraju naziva staviti ; (točka zarez)<br/>
+            npr. brašno; mlijeko;
+        </p>
+        <form asp-action="Index">
+            <div class="form-group" style="margin: 1px">
+                <input type="text" name="ime" class="form-control" placeholder="Ime recepta" />
+            </div>
+            <div class="form-group" style="margin: 1px">
+                <input type="text" name="kategorije" class="form-control" placeholder="Kategorija" />
+            </div>
+            <div class="form-group" style="margin: 1px">
+                <input type="text" name="sastojci" class="form-control" placeholder="Sastojci" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Pretraga" class="btn btn-secondary"/>
+            </div>
+        </form>
+    </div>
+</div>
+<hr/>
+<p>Ukupno recepata: @ViewBag.UkupnoRecepata</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model[0].ImeRecepta)</th>
+        <th>@Html.DisplayNameFor(model => model[0].KategorijaRecepta)</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImeRecepta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem =>item.KategorijaRecepta)
+            </td>
+            <td>
+                <a asp-action="DetaljiRecepta" asp-route-receptId="@item.ReceptId" class="btn btn-info btn-sm">Detalji</a> |
+                <a asp-action="UrediRecept" asp-route-idRecepta="@item.ReceptId" class="btn btn-primary btn-sm">Promjena</a> |
+                <a asp-action="ObrisiRecept" asp-route-receptId="@item.ReceptId" class="btn btn-danger btn-sm">Obrisi</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<form method="get">
+    <div page-model="@ViewBag.PaginacijaInfo" page-action="Index" page-classes-enabled="true"
+         page-class="page-link" page-class-normal="page-link" page-class-selected="page-link active"
+         class="pagination justify-content-end pr-4 pt-2 pb-4">
+    </div>
+</form>

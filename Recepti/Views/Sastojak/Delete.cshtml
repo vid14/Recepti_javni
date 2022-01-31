@@ -1,0 +1,27 @@
+﻿@model Recepti.Models.ReceptiBaza.Sastojak
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Obrisi</h1>
+
+<h3>Oprez brisanje sastojka iz baze</h3>
+<div>
+    <h4>Sastojak recepta</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ime)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="SastojakId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-primary">Nazad</a>
+    </form>
+</div>

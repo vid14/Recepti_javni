@@ -1,0 +1,14 @@
+﻿@model Recepti.Models.ReceptiBaza.Recept
+
+@{
+    ViewBag.Title = "Obrisi recept";
+}
+
+<h2>Brisanje recepta?</h2>
+<h5>@Html.DisplayFor(model=>model.ImeRecepta)</h5>
+<br/>
+<form method="post">
+    <input type="hidden" asp-for="ReceptId" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index" class="btn btn-primary">Nazad</a>
+</form>

@@ -1,0 +1,150 @@
+﻿@model Recepti.Models.ViewModel.ReceptVm
+
+@{
+    ViewBag.Title = "Novi recept";
+}
+
+<h1>Novi recept</h1>
+
+<h4>Recept</h4>
+@ViewBag.Greska
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="NoviRecept" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ImeRecepta" class="control-label"></label>
+                <input asp-for="ImeRecepta" class="form-control" />
+                <span asp-validation-for="ImeRecepta" class="text-danger"></span>
+            </div>
+            <hr/>
+            <h5>Sastojci</h5>
+            <div id="sastojak0" class="form-group row">
+                <div class="col-sm-4">
+                    <select asp-for="@Model.ReceptSastojak[0].IdSastojka" class="browser-default sastojciListe" asp-items="@Model?.ListaSastojaka" style="min-width: 400px"></select>
+                </div>
+                <div class="col-sm-8">
+                    Količina: <input asp-for="@Model.ReceptSastojak[0].Kolicina" class="form-control-sm"/>
+                    <span asp-validation-for="@Model.ReceptSastojak[0].Kolicina" class="text-danger"></span>
+                </div>
+            </div>
+            <br/>
+            <div id="sastojak1" class="form-group row">
+                <div class="col-sm-4">
+                    <select asp-for="@Model.ReceptSastojak[1].IdSastojka" class="browser-default sastojciListe" asp-items="@Model?.ListaSastojaka" style="min-width: 400px"></select>
+                </div>
+                <div class="col-sm-8">
+                    Količina: <input asp-for="@Model.ReceptSastojak[1].Kolicina" class="form-control-sm"/>
+                </div>
+            </div>
+            <br/>
+            <div id="sastojak2" class="form-group row">
+                <div class="col-sm-4">
+                    <select asp-for="@Model.ReceptSastojak[2].IdSastojka" class="browser-default sastojciListe" asp-items="@Model?.ListaSastojaka" style="min-width: 400px"></select>
+                </div>
+                <div class="col-sm-8">
+                    Količina: <input asp-for="@Model.ReceptSastojak[2].Kolicina" class="form-control-sm"/>
+                </div>
+            </div>
+            <br/>
+            <div id="sastojak3" class="form-group row">
+                <div class="col-sm-4">
+                    <select asp-for="@Model.ReceptSastojak[3].IdSastojka" class="browser-default sastojciListe" asp-items="@Model?.ListaSastojaka" style="min-width: 400px"></select>
+                </div>
+                <div class="col-sm-8">
+                    Količina: <input asp-for="@Model.ReceptSastojak[3].Kolicina" class="form-control-sm"/>
+                </div>
+            </div>
+            <br/>
+            <div id="sastojak4" class="form-group row">
+                <div class="col-sm-4">
+                    <select asp-for="@Model.ReceptSastojak[4].IdSastojka" class="browser-default sastojciListe" asp-items="@Model?.ListaSastojaka" style="min-width: 400px"></select>
+                </div>
+                <div class="col-sm-8">
+                    Količina: <input asp-for="@Model.ReceptSastojak[4].Kolicina" class="form-control-sm"/>
+                </div>
+            </div>
+            <br/>
+            <div id="sastojak5" class="form-group row">
+                <div class="col-sm-4">
+                    <select asp-for="@Model.ReceptSastojak[5].IdSastojka" class="browser-default sastojciListe" asp-items="@Model?.ListaSastojaka" style="min-width: 400px"></select>
+                </div>
+                <div class="col-sm-8">
+                    Količina: <input asp-for="@Model.ReceptSastojak[5].Kolicina" class="form-control-sm"/>
+                </div>
+            </div>
+            <br/>
+            <div id="sastojak6" class="form-group row">
+                <div class="col-sm-4">
+                    <select asp-for="@Model.ReceptSastojak[6].IdSastojka" class="browser-default sastojciListe" asp-items="@Model?.ListaSastojaka" style="min-width: 400px"></select>
+                </div>
+                <div class="col-sm-8">
+                    Količina: <input asp-for="@Model.ReceptSastojak[6].Kolicina" class="form-control-sm"/>
+                </div>
+            </div>
+            <br/>
+            <div id="sastojak7" class="form-group row">
+                <div class="col-sm-4">
+                    <select asp-for="@Model.ReceptSastojak[7].IdSastojka" class="browser-default sastojciListe" asp-items="@Model?.ListaSastojaka" style="min-width: 400px"></select>
+                </div>
+                <div class="col-sm-8">
+                    Količina: <input asp-for="@Model.ReceptSastojak[7].Kolicina" class="form-control-sm"/>
+                </div>
+            </div>
+            <br/>
+            <div id="sastojak8" class="form-group row">
+                <div class="col-sm-4">
+                    <select asp-for="@Model.ReceptSastojak[8].IdSastojka" class="browser-default sastojciListe" asp-items="@Model?.ListaSastojaka" style="min-width: 400px"></select>
+                </div>
+                <div class="col-sm-8">
+                    Količina: <input asp-for="@Model.ReceptSastojak[8].Kolicina" class="form-control-sm"/>
+                </div>
+            </div>
+            <hr/>
+            <h4>Opis recepta</h4>
+            <div class="form-group">
+                <label asp-for="DetaljanOpis" class="control-label"></label>
+                <textarea asp-for="DetaljanOpis" class="form-control" id="opisrecepta" style="min-height: 300px"></textarea>
+                <span asp-validation-for="DetaljanOpis" class="text-danger"></span>
+            </div>
+            <hr/>
+            <h4>Kategorije recepta - vise kategorije odvojiti sa ;</h4>
+            <div class="form-group">
+                <label asp-for="Kategorije" class="control-label"></label>
+                <textarea asp-for="Kategorije" class="form-control"></textarea>
+                <span asp-validation-for="Kategorije" class="text-danger"></span>
+            </div>
+            <hr/>
+            <br/>
+            <div class="form-group">
+                <label asp-for="Napomena" class="control-label"></label>
+                <textarea asp-for="Napomena" class="form-control" id="opisrecepta"></textarea>
+                <span asp-validation-for="Napomena" class="text-danger"></span>
+            </div>
+            <hr/>
+            <h4>Slika</h4>
+            <div class="form-group">
+                <input asp-for="SlikaRecepta" class="form-control" multiple="multiple"/>
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Spremi" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<br/>
+<div>
+    <a asp-action="Index" class="btn btn-primary">Nazad</a>
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+    $(function (){
+        $(".sastojciListe").select2();
+    });
+    </script>
+}
